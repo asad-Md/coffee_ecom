@@ -1,0 +1,22 @@
+Dark Mode Palette
+#1E1E1E (Dark gray) – for backgrounds.
+
+#3E2723 (Espresso) – for cards or secondary elements.
+
+#D7CCC8 (Light taupe) – for text or accents.
+
+#A1887F (Muted brown) – for borders or highlights.
+
+#FFAB91 (Soft coral) – for interactive elements or call-to-action buttons.
+
+
+ Vibrant and Energetic Palette
+#6F4E37 (Coffee bean brown) – for primary elements.
+
+#FFEBCD (Blanched almond) – for backgrounds.
+
+#D2B48C (Tan) – for secondary elements.
+
+#A0522D (Sienna) – for accents or highlights.
+
+#8B4513 (Saddle brown) – for text or strong contrasts.

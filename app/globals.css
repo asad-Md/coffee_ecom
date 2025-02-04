@@ -1,21 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap'); */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ffebcd; /* Light mode background (Blanched almond) */
+  --foreground: #522505; /* Light mode text (Saddle brown) */
+  --primary: #ffc195; /* Coffee bean brown */
+  --secondary: #a79d91dd; /* Tan */
+  --accent: #cd5e2a; /* Sienna */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #131313; /* Dark mode background (Dark gray) */
+    --foreground: #ecddcd; /* Dark mode text (Light taupe) */
+    --primary: #3e2723; /* Espresso */
+    --secondary: #dddd; /* Muted brown */
+    --accent: #ffab91; /* Soft coral */
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /*font-family: 'Poppins', sans-serif;*/
+}
+
+
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 }
