@@ -3,6 +3,7 @@ import coffeeImg from "../public/images/coffee_gen2.jpg";
 import CtaCard from "@/components/ctaCard";
 import FeaturedCarousel from "@/components/featuredCarousel";
 import Reviews from "@/components/reviews";
+import Story from "@/components/story";
 
 export const metadata = {
   title: "coffee",
@@ -23,6 +24,7 @@ export default function Home() {
         <CtaCard />
       </div>
       <FeaturedCarousel />
+      <Story />
       <Reviews />
     </>
   );

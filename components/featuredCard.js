@@ -22,7 +22,7 @@ export default function FeaturedCard({index, item}) {
                 <p className='text-primary italic font-thin opacity-70 mt-4 text-sm'>
                   {item.location}
                 </p>
-                <p className='text-primary font-normal opacity-85 text-pretty text-sm '>
+                <p className='text-primary font-normal opacity-85 text-pretty text-sm'>
                   {item.description}
                 </p>
               </div>
