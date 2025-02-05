@@ -41,6 +41,7 @@ export default function FeaturedCarousel() {
           />
         </button>
 
+        
         <div
           ref={scrollContainerRef}
           className='flex gap-20 p-3 scrollbar-hide overflow-y-visible overflow-x-auto scroll-smooth'

@@ -6,7 +6,9 @@ export default function NavBar() {
   return (
     <nav>
       <div className='flex items-center justify-between pr-8 pl-8 pt-4 '>
-        <Logo />
+        <Link href='/'>
+          <Logo />
+        </Link>
         <div className='flex items-center justify-between p-4 text-accent gap-8'>
           <Link
             href='/catalogue'

@@ -4,7 +4,7 @@ export default function FeaturedCard({index, item}) {
         <>
         <div
             key={index}
-            className='flex flex-col rounded-3xl min-w-64 h-auto bg-foreground hover:scale-105 transition-all duration-300 ease-in-out'
+            className='flex flex-col rounded-3xl min-w-64 h-auto bg-foreground hover:scale-105  transition-all duration-300 ease-in-out'
           >
             <Image
               src={item.img}
