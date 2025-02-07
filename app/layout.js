@@ -1,19 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { SessionProvider } from "next-auth/react";
 
 import "./globals.css";
 import NavBar from "@/components/navBar";
 import Footer from "@/components/footer";
 
-import { Poppins } from 'next/font/google'
+import { Poppins } from "next/font/google";
 
 export const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-})
-
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 export default function RootLayout({ children }) {
   const getInitialTheme = () => {
@@ -39,13 +39,14 @@ export default function RootLayout({ children }) {
       lang='en'
       className={`${theme} ${poppins.className} scrollbar-hide`}
     >
-      <body className="antialiased ">
-        <NavBar />
-        <main>{children}</main>
+      <body className='antialiased '>
+       
+        <SessionProvider>
+          <NavBar />
+          <main>{children}</main>
+        </SessionProvider>
         <Footer />
       </body>
-      
     </html>
-    
   );
 }

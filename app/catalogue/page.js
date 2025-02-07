@@ -4,6 +4,7 @@ import { useState } from "react";
 import { dummyProductsData } from "@/data/dummyData";
 import Image from "next/image";
 
+
 export default function CataloguePage() {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
