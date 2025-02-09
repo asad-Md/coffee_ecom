@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "./logo";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 
 export default function NavBar() {
   const { data: session, status } = useSession();
@@ -22,7 +23,7 @@ export default function NavBar() {
         <Link href="/">
           <Logo />
         </Link>
-        <div className="flex items-center justify-between p-4 text-accent gap-8">
+        <div className="flex items-center justify-between p-4 text-accent text-md font-semibold gap-8">
           <Link
             href="/catalogue"
             className="hover:text-foreground transition-all duration-300 ease-in-out"
@@ -35,10 +36,11 @@ export default function NavBar() {
               alt="Shopping Cart Button/Image"
               width={24}
               height={24}
+              className="cursor-pointer "
             />
           </Link>
 
-          {/* Profile and Hover Menu */}
+          
           <div
             className="relative flex items-center gap-4"
             onMouseEnter={handleMouseEnter}
@@ -46,7 +48,7 @@ export default function NavBar() {
           >
             {session ? (
               <>
-                {/* User's image */}
+                
                 <Image
                   src={session.user.image}
                   alt="User Profile"
@@ -54,21 +56,21 @@ export default function NavBar() {
                   height={32}
                   className="rounded-full"
                 />
-                {/* Username */}
-                <span className="text-sm font-semibold">{session.user.name}</span>
+                
+                <span className="text-md   font-semibold">{session.user.name}</span>
 
-                {/* Dropdown menu */}
+                
                 {hovering && (
-                  <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg p-2 text-sm text-black">
+                  <div className="absolute right-0 mt-2 w-40 bg-secondary shadow-lg rounded-2xl p-2 text-sm text-primary transition-all duration-300 ease-in-out">
                     <Link
                       href="/profile"
-                      className="block px-4 py-2 hover:bg-gray-100 rounded-lg"
+                      className="block px-4 py-2 hover:bg-accent rounded-xl"
                     >
-                      Go to Profile
+                      Profile
                     </Link>
                     <button
                       onClick={() => signOut()}
-                      className="block w-full px-4 py-2 text-left hover:bg-gray-100 rounded-lg"
+                      className="block w-full px-4 py-2 text-left hover:bg-accent rounded-xl"
                     >
                       Sign Out
                     </button>
@@ -78,7 +80,7 @@ export default function NavBar() {
             ) : (
               // Sign In Button if not logged in
               <Link href="/api/auth/signin">
-                <button className="text-sm font-semibold hover:text-foreground" onClick={() => signIn()}>
+                <button className="" onClick={() => signIn()}>
                   Sign In
                 </button>
               </Link>

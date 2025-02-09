@@ -1,58 +1,54 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql" // or "mysql" or "sqlite"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
 }
 
-// Minimal required models for NextAuth
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  // We'll add cart and orders later
-}
-
-model Account {
+model account {
   id                String  @id @default(cuid())
   userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              user    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@index([userId])
 }
 
-model Session {
+model session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         user     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
-model VerificationToken {
+model user {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      account[]
+  sessions      session[]
+  cart          cart?
+  orders        order[]
+}
+
+model verificationtoken {
   identifier String
   token      String   @unique
   expires    DateTime
@@ -60,29 +56,193 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-/*
-model User {
-  // ... existing fields ...
-  cart     Cart?    // Will add this
-  orders   Order[]  // Will add this
+model cart {
+  id        String     @id @default(cuid())
+  userId    String     @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  user      user       @relation(fields: [userId], references: [id])
+  cartItems cartitem[]
+
+  @@index([userId])
 }
 
-model Cart {
+model cartitem {
   id        String   @id @default(cuid())
-  userId    String   @unique
-  user      User     @relation(fields: [userId], references: [id])
-  items     Json[]   // or CartItem[] if you want a separate table
+  cartId    String
+  productId String
+  quantity  Int
+  price     Float
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  cart      cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+
+  @@index([cartId])
 }
 
-model Order {
-  id        String   @id @default(cuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  items     Json[]
-  total     Float
-  status    String
-  createdAt DateTime @default(now())
+model order {
+  id              String        @id @default(cuid())
+  userId          String
+  total           Float
+  status          orderstatus   @default(PENDING)
+  shippingAddress String
+  paymentStatus   paymentstatus @default(PENDING)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  user            user          @relation(fields: [userId], references: [id])
+  orderItems      orderitem[]
+
+  @@index([userId])
 }
-*/
+
+model orderitem {
+  id        String   @id @default(cuid())
+  orderId   String
+  productId String
+  quantity  Int
+  price     Float
+  createdAt DateTime @default(now())
+  order     order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+}
+
+enum orderstatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum paymentstatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// datasource db {
+//   provider = "mysql"
+//   url      = env("POSTGRES_URL")
+// }
+
+// model account {
+//   id                String  @id @default(cuid())
+//   userId            String
+//   type              String
+//   provider          String
+//   providerAccountId String
+//   refresh_token     String? @db.Text
+//   access_token      String? @db.Text
+//   expires_at        Int?
+//   token_type        String?
+//   scope             String?
+//   id_token          String? @db.Text
+//   session_state     String?
+//   user              user    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+//   @@unique([provider, providerAccountId])
+//   @@index([userId])
+// }
+
+// model session {
+//   id           String   @id @default(cuid())
+//   sessionToken String   @unique
+//   userId       String
+//   expires      DateTime
+//   user         user     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+//   @@index([userId])
+// }
+
+// model user {
+//   id            String    @id @default(cuid())
+//   name          String?
+//   email         String?   @unique
+//   emailVerified DateTime?
+//   image         String?
+//   accounts      account[]
+//   sessions      session[]
+//   cart          cart?
+//   orders        order[]
+// }
+
+// model verificationtoken {
+//   identifier String
+//   token      String   @unique
+//   expires    DateTime
+
+//   @@unique([identifier, token])
+// }
+
+// model cart {
+//   id        String     @id @default(cuid())
+//   userId    String     @unique
+//   createdAt DateTime   @default(now())
+//   updatedAt DateTime   @updatedAt
+//   user      user       @relation(fields: [userId], references: [id])
+//   cartItems cartitem[]
+
+//   @@index([userId])
+// }
+
+// model cartitem {
+//   id        String   @id @default(cuid())
+//   cartId    String
+//   productId String
+//   quantity  Int
+//   price     Float
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   cart      cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+
+//   @@index([cartId])
+// }
+
+// model order {
+//   id              String        @id @default(cuid())
+//   userId          String
+//   total           Float
+//   status          orderstatus   @default(PENDING)
+//   shippingAddress String
+//   paymentStatus   paymentstatus @default(PENDING)
+//   createdAt       DateTime      @default(now())
+//   updatedAt       DateTime      @updatedAt
+//   user            user          @relation(fields: [userId], references: [id])
+//   orderItems      orderitem[]
+
+//   @@index([userId])
+// }
+
+// model orderitem {
+//   id        String   @id @default(cuid())
+//   orderId   String
+//   productId String
+//   quantity  Int
+//   price     Float
+//   createdAt DateTime @default(now())
+//   order     order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+//   @@index([orderId])
+// }
+
+// enum orderstatus {
+//   PENDING
+//   PROCESSING
+//   SHIPPED
+//   DELIVERED
+//   CANCELLED
+// }
+
+// enum paymentstatus {
+//   PENDING
+//   COMPLETED
+//   FAILED
+//   REFUNDED
+// }
+
+

@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
        
         <SessionProvider>
           <NavBar />
-          <main>{children}</main>
+          <main className="" >{children}</main>
         </SessionProvider>
         <Footer />
       </body>

@@ -19,7 +19,8 @@ export default function Home() {
           src={coffeeImg}
           alt="Coffee"
           width={800}
-          height={800}          
+          height={800}       
+          priority   
         />
         <CtaCard />
       </div>

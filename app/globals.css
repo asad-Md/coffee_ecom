@@ -17,7 +17,7 @@
     --background: #131313; /* Dark mode background (Dark gray) */
     --foreground: #ecddcd; /* Dark mode text (Light taupe) */
     --primary: #3e2723; /* Espresso */
-    --secondary: #dddd; /* Muted brown */
+    --secondary: #dddddd; /* Muted brown */
     --accent: #ffab91; /* Soft coral */
   }
 }
