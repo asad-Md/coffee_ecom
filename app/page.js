@@ -2,7 +2,7 @@ import Image from "next/image";
 import coffeeImg from "../public/images/coffee_gen2.jpg";
 import CtaCard from "@/components/ctaCard";
 import FeaturedCarousel from "@/components/featuredCarousel";
-import Reviews from "@/components/reviews";
+import Testimonials from "@/components/testimonials";
 import Story from "@/components/story";
 
 export const metadata = {
@@ -26,7 +26,7 @@ export default function Home() {
       </div>
       <FeaturedCarousel />
       <Story />
-      <Reviews />
+      <Testimonials />
     </>
   );
 }
