@@ -68,7 +68,7 @@ export default function FeaturedCarousel() {
         </button>
       </div>
 
-      <button className='bg-accent w-fit self-end mr-10 hover:bg-foreground hover:scale-105 hover:font-bold text-primary font-semibold py-2 px-4 rounded-full mt-4 transition-all duration-300 ease-in-out'>
+      <button className='bg-accent w-fit self-end mr-10 text-lg hover:bg-foreground hover:scale-105 hover:font-bold text-primary font-semibold py-2 px-4 rounded-full mt-4 transition-all duration-300 ease-in-out'>
         <Link href='/catalogue'> View Catalogue </Link>
       </button>
     </div>

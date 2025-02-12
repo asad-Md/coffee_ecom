@@ -15,7 +15,7 @@ export default function CtaCard() {
       </p>
       <div className='flex justify-start gap-10 m-4'>
         
-        <button className='bg-accent hover:bg-foreground hover:text-background  text-primary font-semibold py-2 px-4 rounded-full mt-4 transition-all duration-300 ease-in-out'>
+        <button className='bg-accent text-lg hover:bg-foreground hover:text-background  text-primary font-semibold py-2 px-4 rounded-full mt-4 transition-all duration-300 ease-in-out'>
           <Link href='/catalogue'> View Catalogue </Link>
         </button>
       </div>
