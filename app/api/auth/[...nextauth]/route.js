@@ -3,7 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/lib/prisma";
 
-const handler = NextAuth({
+export const authOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
@@ -114,7 +114,21 @@ const handler = NextAuth({
           where: { id: token.userId },
           include: {
             cart: {
-              include: { cartItems: true }
+              include: {
+                cartItems: {
+                  include: {
+                    product: {  // Include product details in cart items
+                      select: {
+                        id: true,
+                        name: true,
+                        description: true,
+                        images: true,
+                        price: true
+                      }
+                    }
+                  }
+                }
+              }
             },
             orders: true
           }
@@ -152,7 +166,9 @@ const handler = NextAuth({
   pages: {
     signIn: "/auth/signin",
   },
-});
+}
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
 

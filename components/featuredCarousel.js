@@ -36,8 +36,8 @@ export default function FeaturedCarousel() {
             src={arrow}
             alt='left arrow'
             className='rotate-180 self-center'
-            width={60}
-            height={60}
+            width={36}
+            height={36}
           />
         </button>
 
@@ -48,7 +48,7 @@ export default function FeaturedCarousel() {
         >
           {dummyFeaturedData.map((item, index) => (
             <FeaturedCard
-              key={index}
+              key={item.id}
               item={item}
             />
           ))}
@@ -62,8 +62,8 @@ export default function FeaturedCarousel() {
             src={arrow}
             alt='left arrow'
             className='self-center'
-            width={60}
-            height={60}
+            width={36}
+            height={36}
           />
         </button>
       </div>

@@ -1,9 +1,14 @@
 "use client";
+import CartItems from "@/components/cart/cartItems";
 import { useSession, signOut, signIn } from "next-auth/react";
+import Image from "next/image";
 // import { redirect } from "next/navigation";
 
 export default function Cart() {
   const { data: session, status } = useSession();
+
+  const cartItems = session?.user.cart.cartItems;
+  console.log("Cart Items:", cartItems);
 
   if (status === "unauthenticated") {
     return (
@@ -29,11 +34,14 @@ export default function Cart() {
     );
   }
 
+  
+
   return (
     <div className='p-8 min-h-screen'>
-      <div className='flex justify-between items-center mb-8'>
+      {/* <div className='flex justify-between items-center mb-8'>
         <h1 className='text-2xl font-bold'>{session?.user?.name}'s Cart</h1>
-      </div>
+      </div> */}
+      <CartItems cartItems={cartItems} />
     </div>
   );
 }

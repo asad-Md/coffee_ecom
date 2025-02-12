@@ -1,0 +1,227 @@
+[
+  {
+    "id": "cm723mfr40000tec48stzs94t",
+    "name": "Robusta",
+    "description": "Strong, bold, and earthy with a rich crema.",
+    "price": 12.98,
+    "inventory": 150,
+    "images": [
+      "/images/bean_image.png"
+    ],
+    "category": "ROBUSTA",
+    "location": "Coorg, India",
+    "isFeatured": true,
+    "createdAt": "2025-02-12T16:01:44.512Z",
+    "updatedAt": "2025-02-12T16:01:44.512Z"
+  },
+  {
+    "id": "cm723mg3a0001tec4v8lnuqwo",
+    "name": "Arabica",
+    "description": "Smooth, mild, and slightly sweet with hints of chocolate and nuts.",
+    "price": 18.98,
+    "inventory": 100,
+    "images": [
+      "/images/bean_image.png"
+    ],
+    "category": "ARABICA",
+    "location": "Chikmaglur, India",
+    "isFeatured": true,
+    "createdAt": "2025-02-12T16:01:44.512Z",
+    "updatedAt": "2025-02-12T16:01:44.512Z"
+  },
+  {
+    "id": "cm723mg4x0002tec4rb3cd9bp",
+    "name": "Excelsa",
+    "description": "Tart, fruity characteristics with dark roast tones.",
+    "price": 16.48,
+    "inventory": 85,
+    "images": [
+      "/images/bean_image.png"
+    ],
+    "category": "SPECIALTY",
+    "location": "Lam Dong, Vietnam",
+    "isFeatured": false,
+    "createdAt": "2025-02-12T16:01:44.512Z",
+    "updatedAt": "2025-02-12T16:01:44.512Z"
+  },
+  {
+    "id": "cm723mg5b0003tec4618xbcp5",
+    "name": "Liberica",
+    "description": "Unique smoky aroma with woody and floral notes.",
+    "price": 20.98,
+    "inventory": 50,
+    "images": [
+      "/images/bean_image.png"
+    ],
+    "category": "SPECIALTY",
+    "location": "Mount Kitanglad, Philippines",
+    "isFeatured": false,
+    "createdAt": "2025-02-12T16:01:44.512Z",
+    "updatedAt": "2025-02-12T16:01:44.512Z"
+  },
+  {
+    "id": "cm723mg5j0004tec4qfa0fwx1",
+    "name": "Nilgiri",
+    "description": "Bright, floral, and citrusy with a smooth finish.",
+    "price": 15.98,
+    "inventory": 75,
+    "images": [
+      "/images/bean_image.png"
+    ],
+    "category": "SPECIALTY",
+    "location": "Nilgiri Hills, India",
+    "isFeatured": true,
+    "createdAt": "2025-02-12T16:01:44.512Z",
+    "updatedAt": "2025-02-12T16:01:44.512Z"
+  },
+  {
+    "id": "cm723n6ff0000te40cxd4nnxr",
+    "name": "Robusta",
+    "description": "Strong, bold, and earthy with a rich crema.",
+    "price": 12.99,
+    "inventory": 150,
+    "images": [
+      "/images/bean_image.png"
+    ],
+    "category": "ROBUSTA",
+    "location": "Coorg, India",
+    "isFeatured": true,
+    "createdAt": "2025-02-12T16:02:19.083Z",
+    "updatedAt": "2025-02-12T16:02:19.083Z"
+  },
+  {
+    "id": "cm723n6ri0001te408mr77bsb",
+    "name": "Liberica",
+    "description": "Unique smoky aroma with woody and floral notes.",
+    "price": 20.99,
+    "inventory": 50,
+    "images": [
+      "/images/bean_image.png"
+    ],
+    "category": "SPECIALTY",
+    "location": "Mount Kitanglad, Philippines",
+    "isFeatured": false,
+    "createdAt": "2025-02-12T16:02:19.083Z",
+    "updatedAt": "2025-02-12T16:02:19.083Z"
+  },
+  {
+    "id": "cm723n6rk0002te40f2y230rs",
+    "name": "Nilgiri",
+    "description": "Bright, floral, and citrusy with a smooth finish.",
+    "price": 15.99,
+    "inventory": 75,
+    "images": [
+      "/images/bean_image.png"
+    ],
+    "category": "SPECIALTY",
+    "location": "Nilgiri Hills, India",
+    "isFeatured": true,
+    "createdAt": "2025-02-12T16:02:19.083Z",
+    "updatedAt": "2025-02-12T16:02:19.083Z"
+  },
+  {
+    "id": "cm723n6tb0003te40n0np37mv",
+    "name": "Arabica",
+    "description": "Smooth, mild, and slightly sweet with hints of chocolate and nuts.",
+    "price": 18.99,
+    "inventory": 100,
+    "images": [
+      "/images/bean_image.png"
+    ],
+    "category": "ARABICA",
+    "location": "Chikmaglur, India",
+    "isFeatured": true,
+    "createdAt": "2025-02-12T16:02:19.083Z",
+    "updatedAt": "2025-02-12T16:02:19.083Z"
+  },
+  {
+    "id": "cm723n6ty0004te40ik22gz2t",
+    "name": "Excelsa",
+    "description": "Tart, fruity characteristics with dark roast tones.",
+    "price": 16.49,
+    "inventory": 85,
+    "images": [
+      "/images/bean_image.png"
+    ],
+    "category": "SPECIALTY",
+    "location": "Lam Dong, Vietnam",
+    "isFeatured": false,
+    "createdAt": "2025-02-12T16:02:19.083Z",
+    "updatedAt": "2025-02-12T16:02:19.083Z"
+  },
+  {
+    "id": "cm723nwas0000te2c0sd4a6iz",
+    "name": "Liberica",
+    "description": "Unique smoky aroma with woody and floral notes.",
+    "price": 20.97,
+    "inventory": 50,
+    "images": [
+      "/images/bean_image.png"
+    ],
+    "category": "SPECIALTY",
+    "location": "Mount Kitanglad, Philippines",
+    "isFeatured": false,
+    "createdAt": "2025-02-12T16:02:52.613Z",
+    "updatedAt": "2025-02-12T16:02:52.613Z"
+  },
+  {
+    "id": "cm723nwmn0001te2corb2yr6w",
+    "name": "Arabica",
+    "description": "Smooth, mild, and slightly sweet with hints of chocolate and nuts.",
+    "price": 18.97,
+    "inventory": 100,
+    "images": [
+      "/images/bean_image.png"
+    ],
+    "category": "ARABICA",
+    "location": "Chikmaglur, India",
+    "isFeatured": true,
+    "createdAt": "2025-02-12T16:02:52.613Z",
+    "updatedAt": "2025-02-12T16:02:52.613Z"
+  },
+  {
+    "id": "cm723nwmw0002te2cj2vt0vp5",
+    "name": "Nilgiri",
+    "description": "Bright, floral, and citrusy with a smooth finish.",
+    "price": 15.97,
+    "inventory": 75,
+    "images": [
+      "/images/bean_image.png"
+    ],
+    "category": "SPECIALTY",
+    "location": "Nilgiri Hills, India",
+    "isFeatured": true,
+    "createdAt": "2025-02-12T16:02:52.613Z",
+    "updatedAt": "2025-02-12T16:02:52.613Z"
+  },
+  {
+    "id": "cm723nwn00003te2c5o4b3euy",
+    "name": "Excelsa",
+    "description": "Tart, fruity characteristics with dark roast tones.",
+    "price": 16.47,
+    "inventory": 85,
+    "images": [
+      "/images/bean_image.png"
+    ],
+    "category": "SPECIALTY",
+    "location": "Lam Dong, Vietnam",
+    "isFeatured": false,
+    "createdAt": "2025-02-12T16:02:52.613Z",
+    "updatedAt": "2025-02-12T16:02:52.613Z"
+  },
+  {
+    "id": "cm723nwn00004te2ce2w0039q",
+    "name": "Robusta",
+    "description": "Strong, bold, and earthy with a rich crema.",
+    "price": 12.97,
+    "inventory": 150,
+    "images": [
+      "/images/bean_image.png"
+    ],
+    "category": "ROBUSTA",
+    "location": "Coorg, India",
+    "isFeatured": true,
+    "createdAt": "2025-02-12T16:02:52.613Z",
+    "updatedAt": "2025-02-12T16:02:52.613Z"
+  }
+]

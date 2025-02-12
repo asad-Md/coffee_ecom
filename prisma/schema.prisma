@@ -1,3 +1,4 @@
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -37,15 +38,16 @@ model session {
 }
 
 model user {
-  id            String    @id @default(cuid())
+  id            String        @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?       @unique
   emailVerified DateTime?
   image         String?
   accounts      account[]
   sessions      session[]
   cart          cart?
   orders        order[]
+  testimonials  testimonial[]
 }
 
 model verificationtoken {
@@ -57,17 +59,35 @@ model verificationtoken {
 }
 
 model product {
-  id          String      @id @default(cuid())
-  name        String
-  description String
-  price       Float
-  inventory   Int         @default(0)
-  images      String[] // Array of image URLs
-  category    String // Simple string field instead of relation
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  cartItems   cartitem[]
-  orderItems  orderitem[]
+  id           String        @id @default(cuid())
+  name         String
+  description  String
+  price        Float
+  inventory    Int          @default(0)
+  images       String[]     // Array of image URLs
+  category     String       // Simple string field instead of relation
+  location     String       // Adding location field based on the dummy data
+  isFeatured   Boolean      @default(false)  // New field to mark featured products
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  cartItems    cartitem[]
+  orderItems   orderitem[]
+  testimonials testimonial[]
+}
+
+model testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  rating    Int
+  review    String
+  productId String
+  userId    String
+  createdAt DateTime @default(now())
+  product   product  @relation(fields: [productId], references: [id])
+  user      user     @relation(fields: [userId], references: [id])
+
+  @@index([productId])
+  @@index([userId])
 }
 
 model cart {
@@ -140,6 +160,175 @@ enum paymentstatus {
   REFUNDED
 }
 
+
+//12/02/25   before adding products and featured to db 
+//generator client {
+//   provider = "prisma-client-js"
+// }
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("POSTGRES_URL")
+// }
+
+// model account {
+//   id                String  @id @default(cuid())
+//   userId            String
+//   type              String
+//   provider          String
+//   providerAccountId String
+//   refresh_token     String?
+//   access_token      String?
+//   expires_at        Int?
+//   token_type        String?
+//   scope             String?
+//   id_token          String?
+//   session_state     String?
+//   user              user    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+//   @@unique([provider, providerAccountId])
+//   @@index([userId])
+// }
+
+// model session {
+//   id           String   @id @default(cuid())
+//   sessionToken String   @unique
+//   userId       String
+//   expires      DateTime
+//   user         user     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+//   @@index([userId])
+// }
+
+// model user {
+//   id            String    @id @default(cuid())
+//   name          String?
+//   email         String?   @unique
+//   emailVerified DateTime?
+//   image         String?
+//   accounts      account[]
+//   sessions      session[]
+//   cart          cart?
+//   orders        order[]
+// }
+
+// model verificationtoken {
+//   identifier String
+//   token      String   @unique
+//   expires    DateTime
+
+//   @@unique([identifier, token])
+// }
+
+// model product {
+//   id          String      @id @default(cuid())
+//   name        String
+//   description String
+//   price       Float
+//   inventory   Int         @default(0)
+//   images      String[] // Array of image URLs
+//   category    String // Simple string field instead of relation
+//   createdAt   DateTime    @default(now())
+//   updatedAt   DateTime    @updatedAt
+//   cartItems   cartitem[]
+//   orderItems  orderitem[]
+// }
+
+// model cart {
+//   id        String     @id @default(cuid())
+//   userId    String     @unique
+//   createdAt DateTime   @default(now())
+//   updatedAt DateTime   @updatedAt
+//   user      user       @relation(fields: [userId], references: [id])
+//   cartItems cartitem[]
+
+//   @@index([userId])
+// }
+
+// model cartitem {
+//   id        String   @id @default(cuid())
+//   cartId    String
+//   productId String
+//   product   product  @relation(fields: [productId], references: [id])
+//   quantity  Int
+//   price     Float
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   cart      cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+
+//   @@index([cartId])
+//   @@index([productId])
+// }
+
+// model order {
+//   id              String        @id @default(cuid())
+//   userId          String
+//   total           Float
+//   status          orderstatus   @default(PENDING)
+//   shippingAddress String
+//   paymentStatus   paymentstatus @default(PENDING)
+//   createdAt       DateTime      @default(now())
+//   updatedAt       DateTime      @updatedAt
+//   user            user          @relation(fields: [userId], references: [id])
+//   orderItems      orderitem[]
+
+//   @@index([userId])
+// }
+
+// model orderitem {
+//   id        String   @id @default(cuid())
+//   orderId   String
+//   productId String
+//   product   product  @relation(fields: [productId], references: [id])
+//   quantity  Int
+//   price     Float
+//   createdAt DateTime @default(now())
+//   order     order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+//   @@index([orderId])
+//   @@index([productId])
+// }
+
+// enum orderstatus {
+//   PENDING
+//   PROCESSING
+//   SHIPPED
+//   DELIVERED
+//   CANCELLED
+// }
+
+// enum paymentstatus {
+//   PENDING
+//   COMPLETED
+//   FAILED
+//   REFUNDED
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// OLDER
 // generator client {
 //   provider = "prisma-client-js"
 // }
