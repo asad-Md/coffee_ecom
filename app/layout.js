@@ -25,10 +25,7 @@ export default function RootLayout({ children }) {
     const prefersDark = window.matchMedia(
       "(prefers-color-scheme: dark)"
     ).matches;
-    // return prefersDark ? "dark" : "light";
-
-    return prefersDark ? "dark" : "dark";   //temporarily set to  hardcoded dark
-    
+    return prefersDark ? "dark" : "light";   
   };
 
   const [theme, setTheme] = useState(getInitialTheme);
