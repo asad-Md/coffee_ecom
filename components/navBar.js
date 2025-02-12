@@ -8,6 +8,7 @@ import { signIn } from "next-auth/react";
 export default function NavBar() {
   const { data: session, status } = useSession();
   const [hovering, setHovering] = useState(false);
+  
 
   const handleMouseEnter = () => {
     setHovering(true);
@@ -63,8 +64,10 @@ export default function NavBar() {
                 {hovering && (
                   <div className="absolute right-0 mt-2 w-40 bg-secondary shadow-lg rounded-2xl p-2 text-sm text-primary transition-all duration-300 ease-in-out">
                     <Link
-                      href="/profile"
-                      className="block px-4 py-2 hover:bg-accent rounded-xl"
+                      disabled={true}  //disable the link if the status is loading
+                      // href="/profile"
+                      href="/"
+                      className="block px-4 py-2 hover:bg-accent rounded-xl cursor-not-allowed"
                     >
                       Profile
                     </Link>

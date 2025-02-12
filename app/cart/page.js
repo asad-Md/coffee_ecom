@@ -1,7 +1,7 @@
 "use client";
 import CartItems from "@/components/cart/cartItems";
 import { useSession, signOut, signIn } from "next-auth/react";
-import Image from "next/image";
+// import Image from "next/image";
 // import { redirect } from "next/navigation";
 
 export default function Cart() {
