@@ -20,7 +20,7 @@ export default function CartItems({ cartItems }) {
   return (
     <div className='min-h-screen bg-background p-12'>
       
-      <div className='flex flex-col gap-8 mb-12 max-w-md mx-auto'>
+      <div className='flex flex-col gap-8 mb-12 max-w-2xl mx-auto'>
         {currentItems.length > 0 ? (
           currentItems.map((item) => {
             return (

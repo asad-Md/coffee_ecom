@@ -8,7 +8,8 @@ export default function Cart() {
   const { data: session, status } = useSession();
 
   const cartItems = session?.user.cart.cartItems;
-  console.log("Cart Items:", cartItems);
+  var totalPrice = 0;
+  
 
   if (status === "unauthenticated") {
     return (
@@ -34,16 +35,24 @@ export default function Cart() {
     );
   }
 
+  var totalPrice=0;
+  cartItems.map((item)=>{
+    totalPrice+=item.price*item.quantity;
+  })
+  const totalPrice2 = totalPrice.toFixed(2);
   
-
   return (
     <div className='p-8 min-h-screen'>
       {/* <div className='flex justify-between items-center mb-8'>
         <h1 className='text-2xl font-bold'>{session?.user?.name}'s Cart</h1>
       </div> */}
-      <h1 className='text-4xl font-bold text-center mb-12 text-coffee-800'>
-        Your Coffee Selection
-      </h1>
+      <div className="flex justify-between my-6 max-w-2xl mx-auto px-4" >
+        <h1 className='text-4xl font-bold text-center text-foreground'>
+        Your Bean Basket
+        </h1>
+        <p className="text-4xl font-bold text-center  text-foreground">$ {totalPrice2}</p>
+      </div>
+
       <CartItems cartItems={cartItems} />
     </div>
   );

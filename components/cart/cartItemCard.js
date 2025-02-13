@@ -6,7 +6,7 @@ export default function CartCard({ item }) {
   return (
     <div
       key={item.id}
-      className='flex justify-between items-center pr-4 bg-foreground rounded-xl mb-4'
+      className='flex pr-2 justify-between bg-foreground rounded-xl mb-4'
     >
       <div className=''>
         <Image
@@ -18,18 +18,28 @@ export default function CartCard({ item }) {
           className='rounded-l-xl'
         />
       </div>
-      <div className='flex flex-col gap-4 p-4'>
-        <h2 className='text-2xl text-center text-primary font-bold'>
-          {item.product.name}
-        </h2>
-        <p className='text-sm text-center text-primary'>${item.price}</p>
+      <div className='flex flex-col my-2 items-start justify-between w-3/5 gap-y-2'>
+        <div className='flex justify-between w-full items-center'>
+          <h2 className='text-3xl text-center text-primary font-bold'>
+            {item.product.name}
+          </h2>
+          <p className='text-md text-center opacity-85 text-primary'>
+            ${item.price}
+          </p>
+        </div>
 
-        <div className='flex gap-4 justify-between start bg-primary opacity-80 rounded-xl'>
-          <DecreaseButton product={item.product} />
-          <span className='text-lg my-auto text-center text-accent  '>
-            {item.quantity}
-          </span>
-          <IncreaseButton product={item.product} />
+        <p className='text-md w-3/4 text-left opacity-85 text-primary'>
+          {item.product.description}
+        </p>
+
+        <div className='flex justify-end w-full items-center'>
+          <div className='flex gap-4 justify-between bg-primary opacity-80 rounded-xl'>
+            <DecreaseButton product={item.product} />
+            <span className='text-lg my-auto text-center text-accent'>
+              {item.quantity}
+            </span>
+            <IncreaseButton product={item.product} />
+          </div>
         </div>
       </div>
     </div>
