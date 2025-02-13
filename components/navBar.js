@@ -82,11 +82,21 @@ export default function NavBar() {
               </>
             ) : (
               // Sign In Button if not logged in
+              //if status == loading, then disable the button
+              status === "loading" ? (
+                <button
+                  className="p-2 bg-primary text-accent rounded-full cursor-not-allowed"
+                  disabled={true}
+                >
+                  Loading...
+                </button>
+              ) : (
               <Link href="/api/auth/signin">
                 <button className="" onClick={() => signIn()}>
                   Sign In
                 </button>
               </Link>
+              )
             )}
           </div>
         </div>

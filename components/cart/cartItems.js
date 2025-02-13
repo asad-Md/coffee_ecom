@@ -2,6 +2,8 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import IncreaseButton from "./increaseButton";
+import DecreaseButton from "./decreaseButton";
 
 export default function CartItems({ cartItems }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -54,13 +56,9 @@ export default function CartItems({ cartItems }) {
                     <p className='text-sm text-center text-primary'>${item.price}</p>
 
                     <div className='flex gap-4 justify-evenly'>
-                      <button className='p-2 bg-primary py-auto text-accent rounded-full hover:bg-accent hover:text-primary transition-all duration-300 ease-in-out'>
-                        -
-                      </button>
+                      <DecreaseButton product={item.product} />
                       <span className='text-lg my-auto text-center text-primary '>{item.quantity}</span>
-                      <button className='p-2 bg-primary text-accent rounded-full hover:bg-accent hover:text-primary transition-all duration-300 ease-in-out'>
-                        +
-                      </button>
+                      <IncreaseButton product={item.product} />
                     </div>
                   </div>
                 
