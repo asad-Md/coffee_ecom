@@ -1,9 +1,8 @@
 // app/products/page.tsx
 "use client";
 import { useState } from "react";
-import Image from "next/image";
-import IncreaseButton from "./increaseButton";
-import DecreaseButton from "./decreaseButton";
+
+import CartCard from "./cartItemCard";
 
 export default function CartItems({ cartItems }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,46 +22,15 @@ export default function CartItems({ cartItems }) {
       <h1 className='text-4xl font-bold text-center mb-12 text-coffee-800'>
         Your Coffee Selection
       </h1>
-      
+
       <div className='flex flex-col gap-8 mb-12 max-w-md mx-auto'>
         {currentItems.length > 0 ? (
           currentItems.map((item) => {
             return (
-              <div
+              <CartCard
                 key={item.id}
-                className='flex justify-between items-center pr-4 bg-foreground rounded-xl mb-4'
-              >
-                
-                  <div className=''>
-                    {/* <Image
-                      src={item.product.images[0]}
-                      alt={item.product.name}
-                      width={200}
-                      height={200}
-                    /> */}
-                    <Image
-                      src={item.product.images[0]}
-                      alt={item.product.name}
-                      width={250}
-                      height={250}                      
-                      sizes='(max-width: 640px) 10vw, (max-width: 1024px) 10vw, 1-vw'  //mobile ~ tablet ~ desktop  
-                      className='rounded-l-xl'
-                    />
-                  </div>
-                  <div className='flex flex-col gap-4 p-4'>
-                    <h2 className='text-2xl text-center text-primary font-bold'>
-                      {item.product.name}
-                    </h2>
-                    <p className='text-sm text-center text-primary'>${item.price}</p>
-
-                    <div className='flex gap-4 justify-evenly'>
-                      <DecreaseButton product={item.product} />
-                      <span className='text-lg my-auto text-center text-primary '>{item.quantity}</span>
-                      <IncreaseButton product={item.product} />
-                    </div>
-                  </div>
-                
-              </div>
+                item={item}
+              />
             );
           })
         ) : (
