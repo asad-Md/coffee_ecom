@@ -41,6 +41,9 @@ export default function Cart() {
       {/* <div className='flex justify-between items-center mb-8'>
         <h1 className='text-2xl font-bold'>{session?.user?.name}'s Cart</h1>
       </div> */}
+      <h1 className='text-4xl font-bold text-center mb-12 text-coffee-800'>
+        Your Coffee Selection
+      </h1>
       <CartItems cartItems={cartItems} />
     </div>
   );

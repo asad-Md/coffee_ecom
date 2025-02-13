@@ -19,10 +19,7 @@ export default function CartItems({ cartItems }) {
 
   return (
     <div className='min-h-screen bg-background p-12'>
-      <h1 className='text-4xl font-bold text-center mb-12 text-coffee-800'>
-        Your Coffee Selection
-      </h1>
-
+      
       <div className='flex flex-col gap-8 mb-12 max-w-md mx-auto'>
         {currentItems.length > 0 ? (
           currentItems.map((item) => {
