@@ -4,21 +4,23 @@ const storyText = `Founded with a passion for the perfect beans, bean's coffee b
 
 export default function Story() {
   return (
-    <div className='min-h-screen max-w-5xl mx-auto flex flex-col gap-10 mb-12'>
-      <h2 className='text-foreground font-bold text-5xl m-4 self-center'>
+    <div className='min-h-screen max-w-5xl mx-auto flex flex-col gap-10 mb-12 md:max-w-5xl md:m-8 lg:max-w-7xl lg:m-12 xl:m-28 2xl:mx-auto'>
+      <h2 className='text-foreground font-bold text-xl sm:text-3xl md:text-5xl m-4 self-center'>
         Our Story
       </h2>
-      <div className='flex gap-20'>
-        <p className='p-4 text-accent font-normal opacity-85 text-justify text-lg leading-10 tracking-widest'>
+      <div className='flex flex-col gap-12'>
+        <p className='p-8 mx-auto text-accent font-normal opacity-85 text-justify text-sm sm:text-lg leading-10 tracking-wider sm:tracking-widest'>
           {storyText}
         </p>
-        <Image
-          src={coffeeTropical}
-          alt='Coffee Estate with Beans'
-          width={800}
-          height={800}
-          className='rounded-3xl p-2'
-        />
+        <div className="w-full mx-auto sm:max-w-md max-w-sm md:max-w-prose">
+          <Image
+            src={coffeeTropical}
+            alt='Coffee Estate with Beans'
+            className='rounded-3xl'
+            // sizes='(max-width: 640px) 100vw, 33vw'
+            priority
+          />
+        </div>
       </div>
     </div>
   );

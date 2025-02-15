@@ -23,28 +23,28 @@ export default function FeaturedCarousel() {
   };
 
   return (
-    <div className='flex flex-col gap-10 py-16 min-h-screen max-w-5xl mx-auto'>
-      <h2 className='text-foreground font-bold text-5xl m-4 self-center'>
+    <div className='flex flex-col gap-10 py-16 sm:min-h-screen max-w-xl m-6 sm:mx-auto sm:max-w-xl md:max-w-5xl'>
+      <h2 className='text-foreground font-bold text-xl sm:text-3xl md:text-5xl m-4 self-center'>
         Featured Beans
       </h2>
       <div className='flex gap-1 justify-center items-center'>
         <button
           onClick={() => scroll("left")}
-          className='bg-accent opacity-85 hidden md:block items-center hover:opacity-100 justify-center text-primary p-2 rounded-full transition-all duration-300 ease-in-out'
+          className='bg-accent opacity-85 items-center hover:opacity-100 justify-center text-primary p-2 rounded-full transition-all duration-300 ease-in-out'
         >
           <Image
             src={arrow}
             alt='left arrow'
             className='rotate-180 self-center'
-            width={36}
-            height={36}
+            width={48}
+            height={48}
           />
         </button>
 
         
         <div
           ref={scrollContainerRef}
-          className='flex gap-20 p-3 scrollbar-hide overflow-y-visible overflow-x-auto scroll-smooth'
+          className='flex gap-8 sm:gap-16 md:gap-20 p-3 scrollbar-hide overflow-y-visible overflow-x-auto scroll-smooth'
         >
           {dummyFeaturedData.map((item, index) => (
             <FeaturedCard
@@ -56,14 +56,14 @@ export default function FeaturedCarousel() {
 
         <button
           onClick={() => scroll("right")}
-          className='bg-accent opacity-85 hidden md:block items-center hover:opacity-100 justify-center text-primary p-2 rounded-full transition-all duration-300 ease-in-out '
+          className='bg-accent opacity-85  items-center hover:opacity-100 justify-center text-primary p-2 rounded-full transition-all duration-300 ease-in-out '
         >
           <Image
             src={arrow}
             alt='left arrow'
             className='self-center'
-            width={36}
-            height={36}
+            width={48}
+            height={48}
           />
         </button>
       </div>
