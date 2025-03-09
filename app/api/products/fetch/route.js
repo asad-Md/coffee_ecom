@@ -5,9 +5,7 @@ export async function GET() {
     try {
         console.log('GET /api/products/fetch');
         const prisma = new PrismaClient();
-        const products = await prisma.product.findMany();
-        console.log('Products:', products);
-        
+        const products = await prisma.product.findMany();        
         // Return a proper NextResponse with the products data
         return NextResponse.json({ products }, { status: 200 });
     } catch (error) {
