@@ -6,7 +6,6 @@ export async function GET() {
     try {
         console.log('GET /api/products/fetch');        
         const products = await prisma.product.findMany();        
-        // Return a proper NextResponse with the products data
         return NextResponse.json({ products }, { status: 200 });
     } catch (error) {
         console.error('Error fetching products:', error);
@@ -15,7 +14,6 @@ export async function GET() {
             { status: 500 }
         );
     } finally {
-        // Close the Prisma client connection
         await prisma.$disconnect();
     }
 }

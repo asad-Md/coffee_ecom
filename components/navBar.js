@@ -25,7 +25,7 @@ export default function NavBar() {
 
   return (
     <nav className='relative'>
-      <div className='flex items-center justify-between px-4 md:px-8 pt-4 transition-all duration-300 ease-in-out'> 
+      <div className='flex items-center justify-between px-4 md:px-8 pt-4 transition-all duration-300 ease-in-out'>
         <Link href='/'>
           <Logo />
         </Link>
@@ -79,19 +79,31 @@ export default function NavBar() {
                 </span>
 
                 {hovering && (
-                  <div className='absolute top-full right-0 w-48 mt-2 bg-secondary shadow-lg rounded-2xl p-2 text-sm text-primary transition-all duration-300 ease-in-out'>
-                    <Link
-                      href='/'
-                      className='block px-4 py-2 hover:bg-accent rounded-xl cursor-not-allowed'
-                    >
-                      Profile
-                    </Link>
-                    <button
-                      onClick={() => signOut()}
-                      className='block w-full px-4 py-2 text-left hover:bg-accent rounded-xl'
-                    >
-                      Sign Out
-                    </button>
+                  <div className='absolute top-0 right-0 w-48 bg-secondary shadow-lg rounded-2xl p-2 text-sm text-primary transition-all duration-300 ease-in-out'>
+                    <div className='flex flex-col justify-center items-center gap-2'>
+                      <Image
+                        src={session.user.image}
+                        alt='User Profile'
+                        width={50}
+                        height={50}
+                        className='rounded-full m-2 px-auto'
+                      />
+                      <span className='text-md font-semibold block w-full px-4 py-2 text-left hover:font- rounded-xl'>
+                        {session.user.name}
+                      </span>
+                      <Link
+                        href='/profile'
+                        className='block w-full px-4 py-2 text-left hover:bg-accent rounded-xl'
+                      >
+                        Profile
+                      </Link>
+                      <button
+                        onClick={() => signOut()}
+                        className='block w-full px-4 py-2 text-left hover:bg-accent rounded-xl'
+                      >
+                        Sign Out
+                      </button>
+                    </div>
                   </div>
                 )}
               </>
