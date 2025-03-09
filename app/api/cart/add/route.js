@@ -1,4 +1,3 @@
-// app/api/cart/add/route.js
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
@@ -25,17 +24,18 @@ export async function POST(req) {
       where: { id: productId }
     });
 
+
     if (!product) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }
-
+    
     // Get user's cart
     let cart = await prisma.cart.findUnique({
       where: { userId: session.user.id },
       include: { cartItems: true }
     });
-
     if (!cart) {
+
       return NextResponse.json({ error: 'Cart not found' }, { status: 404 });
     }
 

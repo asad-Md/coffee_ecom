@@ -1,7 +1,6 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import FeaturedCard from "./featuredCard";
-import { dummyFeaturedData } from "@/data/dummyData";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -9,6 +8,27 @@ import arrow from "@/public/chevron-right.svg";
 
 export default function FeaturedCarousel() {
   const scrollContainerRef = useRef(null);
+  const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFeaturedProducts = async () => {
+      try {
+        const response = await fetch("/api/products/fetch");
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        const { products } = await response.json();
+        setFeaturedProducts(products.slice(0, 5)); // Use first 5 products
+      } catch (error) {
+        console.error("Error fetching featured products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFeaturedProducts();
+  }, []);
 
   const scroll = (direction) => {
     const container = scrollContainerRef.current;
@@ -41,26 +61,31 @@ export default function FeaturedCarousel() {
           />
         </button>
 
-        
         <div
           ref={scrollContainerRef}
           className='flex gap-8 sm:gap-16 md:gap-20 p-3 scrollbar-hide overflow-y-visible overflow-x-auto scroll-smooth'
         >
-          {dummyFeaturedData.map((item, index) => (
-            <FeaturedCard
-              key={item.id}
-              item={item}
-            />
-          ))}
+          {loading ? (
+            <div className="flex items-center justify-center min-h-[200px]">
+              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-accent"></div>
+            </div>
+          ) : (
+            featuredProducts.map((item) => (
+              <FeaturedCard
+                key={item.id}
+                item={item}
+              />
+            ))
+          )}
         </div>
 
         <button
           onClick={() => scroll("right")}
-          className='bg-accent opacity-85  items-center hover:opacity-100 justify-center text-primary p-2 rounded-full transition-all duration-300 ease-in-out '
+          className='bg-accent opacity-85 items-center hover:opacity-100 justify-center text-primary p-2 rounded-full transition-all duration-300 ease-in-out'
         >
           <Image
             src={arrow}
-            alt='left arrow'
+            alt='right arrow'
             className='self-center'
             width={48}
             height={48}

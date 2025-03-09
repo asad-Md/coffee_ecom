@@ -35,6 +35,7 @@ export default function AddToCartButton ({ product }){
 
       
       if (!response.ok) {
+        // console.error('Error', response);
         throw new Error('Failed to add item to cart');
       }
 
