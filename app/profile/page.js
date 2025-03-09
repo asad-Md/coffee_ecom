@@ -9,6 +9,7 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
   const [user, setUser] = useState(null);
+  const [isFetchingProfile, setIsFetchingProfile] = useState(true);
   const [formData, setFormData] = useState({
     phone: '',
     address: '',
@@ -26,6 +27,7 @@ export default function ProfilePage() {
   }, [status, session]);
 
   const fetchUserDetails = async () => {
+    setIsFetchingProfile(true);
     try {
       const response = await fetch('/api/user/profile');
       if (!response.ok) throw new Error('Failed to fetch user profile');
@@ -43,6 +45,8 @@ export default function ProfilePage() {
     } catch (error) {
       console.error("Error fetching user details:", error);
       setMessage({ type: 'error', text: 'Failed to load profile information' });
+    } finally {
+      setIsFetchingProfile(false);
     }
   };
 
@@ -243,12 +247,12 @@ export default function ProfilePage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <p className="text-sm text-primary/70">Phone Number</p>
-                      <p className="text-primary">{user?.phone || 'Not provided'}</p>
+                      <p className="text-primary">{isFetchingProfile ? 'Loading...' : (user?.phone || 'Not provided')}</p>
                     </div>
                     
                     <div>
                       <p className="text-sm text-primary/70">Alternate Number</p>
-                      <p className="text-primary">{user?.alternateNumber || 'Not provided'}</p>
+                      <p className="text-primary">{isFetchingProfile ? 'Loading...' : (user?.alternateNumber || 'Not provided')}</p>
                     </div>
                   </div>
                   
@@ -256,28 +260,28 @@ export default function ProfilePage() {
                   
                   <div>
                     <p className="text-sm text-primary/70">Address</p>
-                    <p className="text-primary">{user?.address || 'Not provided'}</p>
+                    <p className="text-primary">{isFetchingProfile ? 'Loading...' : (user?.address || 'Not provided')}</p>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                     <div>
                       <p className="text-sm text-primary/70">City</p>
-                      <p className="text-primary">{user?.city || 'Not provided'}</p>
+                      <p className="text-primary">{isFetchingProfile ? 'Loading...' : (user?.city || 'Not provided')}</p>
                     </div>
                     
                     <div>
                       <p className="text-sm text-primary/70">State</p>
-                      <p className="text-primary">{user?.state || 'Not provided'}</p>
+                      <p className="text-primary">{isFetchingProfile ? 'Loading...' : (user?.state || 'Not provided')}</p>
                     </div>
                     
                     <div>
                       <p className="text-sm text-primary/70">Country</p>
-                      <p className="text-primary">{user?.country || 'Not provided'}</p>
+                      <p className="text-primary">{isFetchingProfile ? 'Loading...' : (user?.country || 'Not provided')}</p>
                     </div>
                     
                     <div>
                       <p className="text-sm text-primary/70">PIN Code</p>
-                      <p className="text-primary">{user?.pinCode || 'Not provided'}</p>
+                      <p className="text-primary">{isFetchingProfile ? 'Loading...' : (user?.pinCode || 'Not provided')}</p>
                     </div>
                   </div>
                   
