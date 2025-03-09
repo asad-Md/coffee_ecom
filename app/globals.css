@@ -4,20 +4,12 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap'); */
 
-/* :root {
+:root {
   --background: #ffebcd;
   --foreground: #522505; 
   --primary: #ffc195; 
-  --secondary: #a79d91dd;
+  --secondary: #6F4E37;  /* Updated light mode secondary to Coffee Bean Brown */
   --accent: #cd5e2a; 
-} */
-
-:root {
-  --background: #131313; /* Dark mode background (Dark gray) */
-  --foreground: #ecddcd; /* Dark mode text (Light taupe) */
-  --primary: #3e2723; /* Espresso */
-  --secondary: #dddddd; /* Muted brown */
-  --accent: #ffab91; /* Soft coral */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,7 +17,7 @@
     --background: #131313; /* Dark mode background (Dark gray) */
     --foreground: #ecddcd; /* Dark mode text (Light taupe) */
     --primary: #3e2723; /* Espresso */
-    --secondary: #dddddd; /* Muted brown */
+    --secondary: #AA7C64;  /* Updated dark mode secondary to a complementary lighter coffee tone */
     --accent: #ffab91; /* Soft coral */
   }
 }
