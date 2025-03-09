@@ -2,9 +2,9 @@ import { NextResponse } from 'next/server';
 import { PrismaClient } from "@prisma/client";
 
 export async function GET() {
+    const prisma = new PrismaClient();
     try {
-        console.log('GET /api/products/fetch');
-        const prisma = new PrismaClient();
+        console.log('GET /api/products/fetch');        
         const products = await prisma.product.findMany();        
         // Return a proper NextResponse with the products data
         return NextResponse.json({ products }, { status: 200 });
