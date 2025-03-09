@@ -119,7 +119,7 @@ export default function ProfilePage() {
             <div className="flex flex-col items-center md:w-1/3">
               <div className="relative w-32 h-32 mb-4">
                 <Image 
-                  src={session?.user?.image || "/images/profile.svg"}
+                  src={session?.user?.image || "/profile.svg"}
                   alt="Profile Image"
                   fill
                   className="rounded-full object-cover"
