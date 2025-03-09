@@ -14,7 +14,7 @@ export default function Footer() {
               About Us
             </Link>
             <Link
-              href="#"
+              href="/catalogue"
               className="hover:text-[var(--primary)] transition-all duration-300 ease-in-out"
             >
               Beans
