@@ -42,18 +42,19 @@ model user {
   email             String?       @unique
   emailVerified     DateTime?
   image             String?
-  phone             String?       // new field for phone number
-  address           String?       // new field for address
-  country           String?       // new field for country
-  city              String?       // new field for city
-  state             String?       // new field for state
-  pinCode           String?       // new field for pin code
-  alternateNumber   String?       // new optional field for alternate contact number
-  preferredLanguage String?       @default("en")  // additional field
+  address           String?
+  alternateNumber   String?
+  city              String?
+  country           String?
+  phone             String?
+  pinCode           String?
+  preferredLanguage String?
+  state             String?
+  UserLog           UserLog[]
   accounts          account[]
-  sessions          session[]
   cart              cart?
   orders            order[]
+  sessions          session[]
   testimonials      testimonial[]
 }
 
@@ -70,13 +71,14 @@ model product {
   name         String
   description  String
   price        Float
-  inventory    Int          @default(0)
-  images       String[]     // Array of image URLs
-  category     String       // Simple string field instead of relation
-  location     String       // Adding location field based on the dummy data
-  isFeatured   Boolean      @default(false)  // New field to mark featured products
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
+  inventory    Int           @default(0)
+  images       String[]
+  category     String
+  location     String
+  isFeatured   Boolean       @default(false)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  AdminLog     AdminLog[]
   cartItems    cartitem[]
   orderItems   orderitem[]
   testimonials testimonial[]
@@ -112,12 +114,12 @@ model cartitem {
   id        String   @id @default(cuid())
   cartId    String
   productId String
-  product   product  @relation(fields: [productId], references: [id])
   quantity  Int
   price     Float
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   cart      cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product   product  @relation(fields: [productId], references: [id])
 
   @@index([cartId])
   @@index([productId])
@@ -142,14 +144,36 @@ model orderitem {
   id        String   @id @default(cuid())
   orderId   String
   productId String
-  product   product  @relation(fields: [productId], references: [id])
   quantity  Int
   price     Float
   createdAt DateTime @default(now())
   order     order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   product  @relation(fields: [productId], references: [id])
 
   @@index([orderId])
   @@index([productId])
+}
+
+model AdminLog {
+  id        String   @id
+  timestamp DateTime @default(now())
+  action    String
+  productId String?
+  details   Json?
+  product   product? @relation(fields: [productId], references: [id])
+
+  @@index([productId])
+}
+
+model UserLog {
+  id        String   @id
+  timestamp DateTime @default(now())
+  action    String
+  userId    String?
+  details   Json?
+  user      user?    @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }
 
 enum orderstatus {
