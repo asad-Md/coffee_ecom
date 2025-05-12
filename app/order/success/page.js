@@ -1,10 +1,18 @@
 "use client";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 
-export default function OrderSuccess() {
+// Loading component for the Suspense boundary
+const OrderSuccessLoading = () => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-accent"></div>
+  </div>
+);
+
+// Inner component that uses useSearchParams
+function OrderSuccessContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { data: session, status } = useSession();
@@ -15,26 +23,24 @@ export default function OrderSuccess() {
     // Handle authentication check
     if (status === "unauthenticated") {
       router.push('/auth/signin');
-      return; // Exit early to prevent further execution
+      return;
     }
     
     // Handle missing orderId
     if (!orderId && status !== "loading") {
       router.push('/cart');
-      return; // Exit early to prevent further execution
+      return;
     }
 
     // Only set up countdown if we have an orderId and we're authenticated
     if (orderId && status === "authenticated") {
-      let isActive = true; // Flag to track if component is mounted
+      let isActive = true;
       
       const timer = setInterval(() => {
         setCountdown((prev) => {
           if (prev <= 1 && isActive) {
             clearInterval(timer);
-            // Use a flag to prevent multiple navigations
             isActive = false;
-            // Delay the navigation slightly to avoid state updates after unmount
             setTimeout(() => router.push('/catalogue'), 100);
             return 0;
           }
@@ -42,7 +48,6 @@ export default function OrderSuccess() {
         });
       }, 1000);
 
-      // Cleanup function
       return () => {
         isActive = false;
         clearInterval(timer);
@@ -51,11 +56,7 @@ export default function OrderSuccess() {
   }, [router, orderId, status]);
 
   if (status === "loading") {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-accent"></div>
-      </div>
-    );
+    return <OrderSuccessLoading />;
   }
 
   return (
@@ -89,5 +90,14 @@ export default function OrderSuccess() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Main component that provides the Suspense boundary
+export default function OrderSuccess() {
+  return (
+    <Suspense fallback={<OrderSuccessLoading />}>
+      <OrderSuccessContent />
+    </Suspense>
   );
 }
